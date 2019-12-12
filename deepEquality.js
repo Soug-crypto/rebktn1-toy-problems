@@ -11,6 +11,29 @@
   * don't worry about handling cyclical object structures.
   *
   */
+
+
 var deepEquals = function(apple, orange) {
-  return JSON.stringify(apple)===JSON.stringify(orange)
+  var edgeCase = edgeCase || false
+  var funCompare = funCompare || false
+
+  for (var key in apple) {
+    if (typeof apple[key] === 'function') {
+      edgeCase = true;
+      funCompare = ""+apple[key] === ""+orange[key]
+
+    }
+  }
+
+  for (var key in orange) {
+    if (typeof orange[key] === 'function') {
+      edgeCase = true;
+      funCompare = ""+apple[key] === ""+orange[key]
+    }
+  }
+
+  if (!edgeCase){
+    return JSON.stringify(apple)===JSON.stringify(orange)
+  }
+  return funCompare
 };
