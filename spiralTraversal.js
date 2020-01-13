@@ -33,10 +33,9 @@ var spiralTraversal = (arr) => {
       acc = acc.concat([...arr[i]])
     } else {
       for (var j = arr[i].length - 1; j >= 0; j-- ) {
-        array[i]
+        acc.push(arr[i][j])
       }
     }
-    //arr[i][j]
   }
   return acc
 }
